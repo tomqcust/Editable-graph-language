@@ -3,7 +3,6 @@
   <head>  
         <meta charset="utf-8">  
         <title>力导向图</title>  
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   </head> 
 
 <style>
@@ -24,18 +23,26 @@
 					  temp = data;
                       console.log(data);
               }
-       });	
-		var nodes2 = new Array();
-		for(x in temp.results.bindings)
+       });	 
+		var nodes1 = new Array();
+		var temp123 = {value:"city"};
+		nodes1.push(temp123);
+		var nodes2 = temp.results.bindings;
+		for(x in nodes2)
 		{
-			nodes1.add(x.X);
-			nodes1.add(x.Y);
+			nodes1.push(nodes2[x].X);
+			console.log(nodes2[x].X);	
+			nodes1.push(nodes2[x].Y);
+			console.log(nodes2[x].Y);	
 		}
-		var nodes1 = temp.results.bindings;
 		
 		console.log(nodes1);	
 		var edges = [  { source : 0  , target: 1 } ,
-					   { source : 1  , target: 2 }  ];	
+					   { source : 0  , target: 3 } ,
+					   { source : 0  , target: 5 } ,
+					   { source : 1  , target: 2 } ,
+					   { source : 3  , target: 4 } ,
+					   { source : 5  , target: 6 }  ];	
 		
 		var width = 1200;
 		var height = 1200;
@@ -82,7 +89,7 @@
 							.attr("dx", 20)
 							.attr("dy", 8)
 							.text(function(d){
-								return d.X.value;
+								return d.value;
 							});
 					
 
